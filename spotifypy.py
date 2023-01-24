@@ -2,8 +2,6 @@ import spotipy
 import var
 from spotipy.oauth2 import SpotifyClientCredentials
 
-playlist_uri = 'spotify:playlist:3Gg7sPifer5z1h1NaBWU6f'
-testplaylist = 'spotify:playlist:5Vxi45lmduL9boFwQq0fOP'
 
 auth_manager = SpotifyClientCredentials(
         client_id=var.client_id,
@@ -11,11 +9,11 @@ auth_manager = SpotifyClientCredentials(
     )
 
 spotify = spotipy.Spotify(auth_manager=auth_manager)
-results = spotify.playlist(testplaylist)
+results = spotify.playlist(var.playlist_uri)
 
 
 counter = 1
-for track in spotify.playlist_tracks(testplaylist)["items"]:
+for track in spotify.playlist_tracks(var.playlist_uri)["items"]:
     track_artist = track["track"]["artists"][0]["name"]
     album_name = track["track"]["album"]["name"]
     track_name = track["track"]["name"]
